@@ -31,7 +31,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       // 登录表单的数据绑定对象
       loginForm: {
@@ -54,14 +54,20 @@ export default {
       // console.log(this)  找寻到实例对象
       this.$refs.loginFormRef.resetFields()
     },
-    login () { // this.$refs.loginFormRef.validate(async (valid) => { console.log(valid) if (!valid) return const { data: res } = await this.$http.post('Login', this.loginForm)
-      var res = 200
-      // res.meta.status = 201
-      if (res !== 200) return this.$message.error('登录失败')
-      this.$message.success('登录成功')// })
-      console.log(res)
-      window.sessionStorage.setItem('token', res)// 将登陆成功后的token保存到sessionStorage
-      this.$router.push('/home')
+    login() {
+      this.$refs.loginFormRef.validate(async (valid) => {
+        console.log(valid)
+        if (!valid) return
+        const { data: res } = await this.$http.post('login', this.loginForm)
+        // var res = 200
+        // res.meta.status = 201
+        if (res.meta.status !== 200) return this.$message.error('登录失败')
+        this.$message.success('登录成功')
+        // console.log(res.data.token)
+        window.sessionStorage.setItem('token', res.data.token)// 将登陆成功后的token保存到sessionStorage
+        this.$router.push('/home')
+      })
+      // console.log(res)
     }
   }
 }

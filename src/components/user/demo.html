@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>vue点击切换显示隐藏</title>
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+            font-size: 14px;
+        }
+        .pannerArea{}
+        .pannerArea ul{}
+        .pannerArea ul li{list-style: none;}
+        .pannerArea ul li .title{font-size: 18px;height: 60px;line-height: 60px;border-bottom: 1px solid #F6F6F6;cursor: pointer;color: #222;padding: 0 28px;}
+        .pannerArea ul li .title .iconAdd{float: right;vertical-align: middle; }
+        .pannerArea ul li .title .iconReduce{float: right;vertical-align: middle;}
+        .pannerArea ul li .title{}
+        .pannerArea ul li .title.greenBG{border: none;background-color: #3ED8C4;color: #fff;}
+
+        .joinWork{padding: 40px 50px;}
+        .joinWork .workDuty{font-size: 14px;color: #444;line-height:34px;margin: 8px 0;}
+        .joinWork .workIntro{font-size: 14px;color: #444;line-height:34px;}
+    </style>
+</head>
+<body>
+<div id="example">
+    <div class="pannerArea">
+        <ul>
+            <li v-for="(item,index) in sites" :key="item" >
+                <h2 class="title" :class="{'greenBG':currentIdx == index}"  @click="showToggle(index)">{{ item.name }}
+                    <span class="iconAdd"  v-if="currentIdx != index">+</span>
+                    <span class="iconReduce" v-if="currentIdx == index">-</span>
+                </h2>
+                <div class="joinWork" v-if="currentIdx == index">
+                    <h2 class="workDuty">【岗位职责】</h2>
+                    <p class="workIntro">
+                        1.html<br />
+                        2.vue
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    new Vue({
+        el:"#example",
+        data:{
+
+            currentIdx: -1,
+            sites: [
+                { name: '1111' },
+                { name: '2223' },
+                { name: '33333' }
+            ],
+        },
+        methods:{
+            showToggle:function(index){
+                if (this.currentIdx == index) return this.currentIdx = -1;
+                this.currentIdx = index;
+            }
+        }
+    })
+</script>
+</body>
+</html>
