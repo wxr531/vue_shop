@@ -7,7 +7,7 @@ import {
   Select, Option, Row, Col,
   Table, TableColumn, Switch, Pagination,
   Dialog, Drawer, Radio, RadioGroup,
-  MessageBox
+  MessageBox, Tag, Tree
 } from 'element-ui'
 Vue.use(Button)// Button按钮
 Vue.use(Form)// Form表单
@@ -36,5 +36,7 @@ Vue.use(Dialog)
 Vue.use(Drawer)
 Vue.use(Radio)
 Vue.use(RadioGroup)
+Vue.use(Tag)
+Vue.use(Tree)
 Vue.prototype.$message = Message// message消息弹框组件
 Vue.prototype.$confirm = MessageBox.confirm
